@@ -5,7 +5,7 @@ This web application is used to exercise the functionality of the [Trader Deskto
 
 Build Instructions
 ------------------
-* Clone the Trader Desktop Server Diagnostics repository on your machine.
+* Clone this repository on your machine.
 * Open a command shell and change the directory to the local instance of the repository.
 * Install the required NPM packages:
 
@@ -14,7 +14,7 @@ Build Instructions
 
         $ grunt
 
-This will open the diagnostics application in your browser. It can also be launched manually by pointing your browser to [http://localhost:9000](http://localhost:9000).
+This will open the diagnostics web application in your browser. It can also be launched manually by pointing your browser to [http://localhost:9000](http://localhost:9000).
 
 Here's a screen shot of the application:
 
