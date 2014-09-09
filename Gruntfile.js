@@ -11,6 +11,25 @@ module.exports = function (grunt) {
     // Define the configuration for all the tasks
     grunt.initConfig({
 
+        // Runs application in a web server
+        connect: {
+            options: {
+                port: 9000,
+                open: true,
+                livereload: 35729,
+                hostname: 'localhost'
+            },
+            livereload: {
+                options: {
+                    middleware: function (connect) {
+                        return [
+                            connect.static('src')
+                        ];
+                    }
+                }
+            }
+        },
+
         // Watches files for changes and runs tasks based on the changed files
         watch: {
             js: {
@@ -19,6 +38,14 @@ module.exports = function (grunt) {
                     'Gruntfile.js'
                 ],
                 tasks: ['jshint']
+            },
+            src: {
+                files: [
+                    'src/**/*'
+                ],
+                options: {
+                    livereload: true
+                }
             }
         },
 
@@ -36,6 +63,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('default', [
+        'connect:livereload',
         'jshint',
         'watch'
     ]);

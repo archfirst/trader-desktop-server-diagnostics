@@ -30,7 +30,7 @@ angular.module('diagnostics')
             return _.find($scope.orders, {id: id});
         }
 
-        $scope.createOrders = function() {
+        $scope.createOrder = function() {
             var numInstruments = $scope.instruments.length;
             OrderService.createOrder(null, {
                 side: 'Buy',
