@@ -24,11 +24,8 @@
 
     <div class="row">
         <div class="col-sm-2">
-            <p>
-                <button class="btn btn-default" ng-click="getUsers()">Users</button>
-            </p>
-
-            <table class="table">
+            <h3>Users</h3>
+            <table class="table table-condensed table-striped">
                 <tr ng-repeat="user in users">
                     <td>
                         <b>{{ user.id }}</b>
@@ -41,11 +38,8 @@
         </div>
 
         <div class="col-sm-3">
-            <p>
-                <button class="btn btn-default" ng-click="getInstruments()">Instruments</button>
-            </p>
-
-            <table class="table">
+            <h3>Instruments</h3>
+            <table class="table table-condensed table-striped">
                 <tr ng-repeat="inst in instruments">
                     <td>
                         <b>{{ inst.symbol }}</b>
@@ -65,22 +59,37 @@
                 <button class="btn btn-sm btn-default" ng-click="clearOrders()">Clear</button>
             </p>
 
-            <table class="table">
-                <tr ng-repeat="order in orders track by order.id">
-                    <td>
-                        <small>{{order.id}}</small>
-                    </td>
-                    <td>{{order.creationTime | date:'short' }}</td>
-                    <td>{{order.side}}</td>
-                    <td>
-                        <b>{{order.symbol}}</b>
-                    </td>
-                    <td>{{order.quantity | number:3 }}</td>
-                    <td>{{order.quantityPlaced | number:3 }}</td>
-                    <td>{{order.quantityExecuted | number:3 }}</td>
-                    <td>{{order.limitPrice | currency}}</td>
-                    <td>{{order.status}}</td>
-                </tr>
+            <table class="table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Time</th>
+                        <th>Side</th>
+                        <th>Symbol</th>
+                        <th>Qty</th>
+                        <th>Placed</th>
+                        <th>Executed</th>
+                        <th>Limit</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="order in orders track by order.id">
+                        <td>
+                            <small>{{order.id}}</small>
+                        </td>
+                        <td>{{order.creationTime | date:'hh:mm' }}</td>
+                        <td>{{order.side}}</td>
+                        <td>
+                            <b>{{order.symbol}}</b>
+                        </td>
+                        <td>{{order.quantity }}</td>
+                        <td>{{order.quantityPlaced }}</td>
+                        <td>{{order.quantityExecuted }}</td>
+                        <td>{{order.limitPrice | currency}}</td>
+                        <td>{{order.status}}</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
@@ -91,6 +100,8 @@
 <script src="vendor/angular.min.js"></script>
 <script src="vendor/angular-resource.min.js"></script>
 <script src="vendor/angular-sanitize.min.js"></script>
+<script src="vendor/socket.js"></script>
+<script src="http://localhost:8080/socket.io/socket.io.js"></script>
 
 <!-- App -->
 <script src="app.js"></script>
