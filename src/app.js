@@ -81,7 +81,7 @@ angular.module('diagnostics')
 angular.module('diagnostics')
     .factory('OrderService', function($resource, ServerUrl) {
 
-        return $resource(ServerUrl + '/rest/:type', null, {
+        return $resource(ServerUrl + '/:type', null, {
             users: {
                 method: 'GET',
                 params: { type: 'users' },
