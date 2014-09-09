@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Server Diagnostics</title>
+
+    <link rel="stylesheet" href="vendor/bootstrap.min.css"/>
+    <link rel="stylesheet" href="vendor/bootstrap-theme.min.css"/>
+
+    <style>
+        body {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body ng-app="diagnostics" ng-controller="DiagnosticsController">
+
+<div class="container">
+    <div class="row">
+        <div class="well">
+            <h2>Server Diagnostics</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2">
+            <p>
+                <button class="btn btn-default" ng-click="getUsers()">Users</button>
+            </p>
+
+            <table class="table">
+                <tr ng-repeat="user in users">
+                    <td>
+                        <b>{{ user.id }}</b>
+                    </td>
+                    <td>
+                        <small>{{ user.name }}</small>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-sm-3">
+            <p>
+                <button class="btn btn-default" ng-click="getInstruments()">Instruments</button>
+            </p>
+
+            <table class="table">
+                <tr ng-repeat="inst in instruments">
+                    <td>
+                        <b>{{ inst.symbol }}</b>
+                    </td>
+                    <td>
+                        <small>{{ inst.name }}</small>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-sm-7">
+            <p>
+                <h3>Orders</h3>
+                <button class="btn btn-sm btn-default" ng-click="createOrders()">Create</button>
+                <button class="btn btn-sm btn-default" ng-click="refreshOrders()">Refresh</button>
+                <button class="btn btn-sm btn-default" ng-click="clearOrders()">Clear</button>
+            </p>
+
+            <table class="table">
+                <tr ng-repeat="order in orders track by order.id">
+                    <td>
+                        <small>{{order.id}}</small>
+                    </td>
+                    <td>{{order.creationTime | date:'short' }}</td>
+                    <td>{{order.side}}</td>
+                    <td>
+                        <b>{{order.symbol}}</b>
+                    </td>
+                    <td>{{order.quantity | number:3 }}</td>
+                    <td>{{order.quantityPlaced | number:3 }}</td>
+                    <td>{{order.quantityExecuted | number:3 }}</td>
+                    <td>{{order.limitPrice | currency}}</td>
+                    <td>{{order.status}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Libs -->
+<script src="vendor/lodash.min.js"></script>
+<script src="vendor/angular.min.js"></script>
+<script src="vendor/angular-resource.min.js"></script>
+<script src="vendor/angular-sanitize.min.js"></script>
+
+<!-- App -->
+<script src="app.js"></script>
+
+</body>
+</html>
